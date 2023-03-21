@@ -3,6 +3,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: mysql-secrets
+  namespace: backend
 type: Opaque
 data:
   root_password: dGVzdDEyMzQ= # Base64 encoded
@@ -11,6 +12,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: mysql-initdb
+  namespace: backend
 data:
   init.sql: |-
     CREATE DATABASE products;
@@ -21,6 +23,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mysql
+  namespace: backend
 spec:
   serviceName: mysql
   replicas: 1
@@ -69,10 +72,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mysql
+  namespace: backend
 spec:
   ports:
     - name: mysql-port
       port: 3306
       protocol: TCP
+      targetPort: 3306
   selector:
     app: mysql
