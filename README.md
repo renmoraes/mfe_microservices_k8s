@@ -16,8 +16,14 @@ To run this application, you will need the following:
 mvn clean install -DskipTests
 ```
 
+### Customer API Service Docker
+```bash
+cd customer-api
+docker build -t localhost:5001/customer-api:latest .
+docker push localhost:5001/customer-api:latest
+```
 
-### Products Service Docker
+### Products API Service Docker
 ```bash
 cd products-api
 docker build -t localhost:5001/products-api:latest .
