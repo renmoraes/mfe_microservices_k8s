@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: products-api-service
-          image: remoraes/com.tus.microservices.products:latest
+          image: localhost:5001/products-api:test
+          imagePullPolicy: Always
           ports:
             - containerPort: 8300
 ---
@@ -29,4 +30,5 @@ spec:
     - name: http
       port: 8300
       targetPort: 8300
-  type: LoadBalancer
+      nodePort: 30000
+  type: NodePort

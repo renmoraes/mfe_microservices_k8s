@@ -43,6 +43,7 @@ spec:
                   key: root_password
           ports:
             - name: mysql-port
+              protocol: TCP
               containerPort: 3306
           volumeMounts:
             - name: mysql-data
@@ -72,5 +73,6 @@ spec:
   ports:
     - name: mysql-port
       port: 3306
+      protocol: TCP
   selector:
     app: mysql
