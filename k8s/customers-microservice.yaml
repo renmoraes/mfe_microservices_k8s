@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customers-api-service
+  namespace: backend
+spec:
+  selector:
+    matchLabels:
+      app: customers-api-service
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: customers-api-service
+    spec:
+      containers:
+        - name: customers-api-service
+          image: localhost:5001/customers-api:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8300
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: customers-api-service
+  namespace: backend
+spec:
+  selector:
+    app: customers-api-service
+  ports:
+    - name: http
+      port: 8301
+      targetPort: 8301
+      nodePort: 30010
+  type: NodePort

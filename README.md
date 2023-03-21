@@ -41,5 +41,6 @@ kubectl create namespace backend
 kubectl apply -f k8s/db/mysql.yaml
 
 # Deploy microservices
+kubectl apply -f k8s/customers-microservice.yaml
 kubectl apply -f k8s/products-microservice.yaml
 ```
