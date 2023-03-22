@@ -1,6 +1,6 @@
 # Cart Web App Service
 
-This is a web application service for managing customers. 
+This is a web application service for managing cart service. 
 
 ### API Endpoints
 The following table lists the RESTful API endpoints that the application provides:
