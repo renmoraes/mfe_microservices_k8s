@@ -50,4 +50,5 @@ kubectl apply -f k8s/db/mysql.yaml
 # Deploy microservices
 kubectl apply -f k8s/customers-microservice.yaml
 kubectl apply -f k8s/products-microservice.yaml
+kubectl apply -f k8s/cart-microservice.yaml
 ```

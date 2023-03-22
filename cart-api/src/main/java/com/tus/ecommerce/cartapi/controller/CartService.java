@@ -30,7 +30,7 @@ public class CartService {
 		return cartRepo.findAll();
 	}
 	
-	@GetMapping("/cart/{id}")
+	@GetMapping("/cart/{cart_id}")
     public ResponseEntity<Cart> getCartById(@PathVariable(value = "cart_id") Integer cart_Id) throws ResourceNotFoundException {
         Optional<Cart> cart = cartRepo.findById(cart_Id);
         if(cart.isPresent())
@@ -44,7 +44,7 @@ public class CartService {
         return cartRepo.save(cart);
     }
     
-    @DeleteMapping("/cart/{id}")
+    @DeleteMapping("/cart/{cart_id}")
     public void deleteCart(@PathVariable(value = "cart_id") Integer cart_Id) {
     	Optional<Cart> existingCart = cartRepo.findById(cart_Id);
     	if (existingCart.isPresent()) {

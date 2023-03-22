@@ -1,14 +1,6 @@
 # Products Web App Service
 
-This is a web application service for managing products. Below are the requirements and instructions to set up and run the application.
-
-## Requirements
-
-To run this application, you will need the following:
-
-- Java 11 SDK - It is suggested to use sdkman, which can be installed from https://sdkman.io/install.
-- Maven - Maven is required to build and run the application. You can install Maven from https://maven.apache.org/install.html.
-- SQL database - You will need to have a SQL database installed, and create a `products` database in it.
+This is a web application service for managing products.
 
 ### Running MySQL in Docker
 
