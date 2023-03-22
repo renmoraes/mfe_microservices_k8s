@@ -1,36 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: customers-api-service
+  name: cart-api-service
   namespace: backend
 spec:
   selector:
     matchLabels:
-      app: customers-api-service
+      app: cart-api-service
   replicas: 2
   template:
     metadata:
       labels:
-        app: customers-api-service
+        app: cart-api-service
     spec:
       containers:
-        - name: customers-api-service
-          image: localhost:5001/customers-api:latest
+        - name: cart-api-service
+          image: localhost:5001/cart-api:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8301
+            - containerPort: 8304
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: customers-api-service
+  name: cart-api-service
   namespace: backend
 spec:
   selector:
-    app: customers-api-service
+    app: cart-api-service
   ports:
     - name: http
-      port: 8301
-      targetPort: 8301
-      nodePort: 30010
+      port: 8304
+      targetPort: 8304
+      nodePort: 30020
   type: NodePort

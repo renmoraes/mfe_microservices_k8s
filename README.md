@@ -30,6 +30,13 @@ docker build -t localhost:5001/products-api:latest .
 docker push localhost:5001/products-api:latest
 ```
 
+### Cart API Service Docker
+```bash
+cd cart-api
+docker build -t localhost:5001/cart-api:latest .
+docker 
+```
+
 ## Deploy
 ```bash
 # Setup k8s cluster
