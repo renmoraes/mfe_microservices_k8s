@@ -32,5 +32,5 @@ spec:
     - name: http
       port: 8301
       targetPort: 8301
-      nodePort: 30010
-  type: NodePort
+  #     nodePort: 30010
+  # type: NodePort

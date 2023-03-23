@@ -43,25 +43,46 @@ docker push localhost:5001/cart-api:latest
 ```
 
 ## Deploy
-To deploy the application, run the following commands:
+From the project directory, run the following commands to deploy the application:
 ```bash
 # Setup k8s cluster
-/mfe_microservices_k8s/k8s/local_cluster/create_cluster.sh
+./k8s/local_cluster/create_cluster.sh
 
-kubectl create namespace backend
-
-# Deploy mySQL db
-kubectl apply -f k8s/db/mysql.yaml
-
-# Deploy microservices
-kubectl apply -f k8s/customers-microservice.yaml
-kubectl apply -f k8s/products-microservice.yaml
-kubectl apply -f k8s/cart-microservice.yaml
+# Deploy microservices k8s resources
+./k8s/deploy_k8s.sh
 ```
 
-# Test the APIs
-The APIs can be tested on the following endpoints:
+### Access the APIs
 
-- Products API: `localhost:30000/products`
-- Customers API: `localhost:30010/customers`
-- Cart API: `localhost:30020/carts`
+1. Retrieve the IP address of the ingress controller:
+
+```bash
+$ kubectl get ingress -n backend
+NAME              CLASS    HOSTS                 ADDRESS     PORTS   AGE
+backend-ingress   <none>   backend.example.com   localhost   80      64m
+```
+
+2 - Add an entry for backend.example.com to your /etc/hosts file (or C:\Windows\System32\drivers\etc\hosts on Windows):
+
+```bash
+127.0.0.1       kubernetes.docker.internal      localhost        backend.example.com
+::1             kubernetes.docker.internal      localhost        backend.example.com
+```
+3 - Test the APIs by sending HTTP requests to the following endpoints:
+
+| API Name       | API Endpoint                           |
+| -------------- | -------------------------------------- |
+| Products API   | http://backend.example.com/products   |
+| Customers API  | http://backend.example.com/customers  |
+| Cart API        | http://backend.example.com/carts      |
+
+For example, you can use the curl command to send a request to the Products API:
+
+```bash
+curl http://backend.example.com/products
+```
+The response should be a list of products in JSON format.
+
+Note: You may need to modify the port number in the Ingress resource and the Service definitions if they conflict with other services running on your system.
+
+That's it! You should now be able to test the backend APIs using the domain name and endpoints specified in the Ingress resource.
