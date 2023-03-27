@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: backend-ingress
   namespace: backend
+  annotations:
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
   - host: backend.example.com
